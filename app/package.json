@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "@fullcalendar/core": "^5.11.3",
+    "@fullcalendar/daygrid": "^5.11.3",
+    "@fullcalendar/list": "^5.11.3",
+    "@fullcalendar/timegrid": "^5.11.3",
+    "@google-cloud/local-auth": "^2.1.0",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "fullcalendar": "^5.11.3",
+    "googleapis": "^105.0.0"
+  },
+  "name": "google",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon bin/www.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
