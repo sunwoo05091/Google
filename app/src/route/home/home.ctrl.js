@@ -10,6 +10,9 @@ const view = {
     },
     update : (req, res) =>{
         res.render("./home/update");
+    },
+    popUp : (req, res) =>{
+        res.render("./home/schedulePopup");
     }
 }
 
