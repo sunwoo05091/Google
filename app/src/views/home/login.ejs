@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="/app/src/public/views/js/getURL.js"></script>
+<body>
+    <input type="button" class="button" value="">
+</body>
+    <script>
+         let gauth;
+         const xhr = new XMLHttpRequest();
+         let loginBtn = document.querySelector('.button');
+         loginBtn.addEventListener('click', login); //이어서 설명
+
+         function login() {
+         gapi.load('auth2', function () {
+         gauth = gapi.auth2.init({
+          client_id: 'Your Client id를 넣어주세요'
+        });
+
+      gauth.signIn().then(result => {
+          let user = gauth.currentUser.get();
+          let userName = user.getBasicProfile().getName();
+          let userInfo_it = result.getAuthResponse().id_token;
+          let userInfo_at = result.getAuthResponse(true).access_token;
+
+          xhr.open('post', 'http://localhost:3000/', true);
+          xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+          xhr.onreadystatechange = function () {
+              if (xhr.readyState === xhr.DONE) {
+                  if (xhr.status === 200 || xhr.status === 201) {
+                      let payload = JSON.parse(xhr.responseText);
+                      window.location.href = './next.html';
+                      localStorage.setItem('token', payload.token);
+                      localStorage.setItem('name', userName)
+                  } else {
+                      console.error(xhr.responseText);
+                  }
+              }
+          };
+          xhr.send("it=" + userInfo_it + "&at=" + userInfo_at);
+      });
+  });
+}
+    </script>
+</html>

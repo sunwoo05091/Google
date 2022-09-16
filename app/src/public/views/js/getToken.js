@@ -1,36 +1,8 @@
-const {google} = require("googleapis");
-
-const fs = require("fs");
-
-fs.readFile('../credentials.json', (error, jsonFile)=>{
-    if(error) return console.error;
-    console.log(jsonFile);
-
-    const jsonData = JSON.parse(jsonFile);
-    console.log(jsonFile);
-
-    const todos = jsonData.todos;
-    todos.forEach(todo => {
-        console.log(todo);
-    });
-})
-
-// const oauth2Client = new google.auth.OAuth2(
-//     YOUR_CLIENT_ID,
-//     YOUR_CLIENT_SECRET,
-//     YOUR_REDIRECT_URL
-//   );
-  
-//   // generate a url that asks permissions for Blogger and Google Calendar scopes
-//   const scopes = [
-//     'https://www.googleapis.com/auth/blogger',
-//     'https://www.googleapis.com/auth/calendar'
-//   ];
-  
-//   const url = oauth2Client.generateAuthUrl({
-//     // 'online' (default) or 'offline' (gets refresh_token)
-//     access_type: 'offline',
-  
-//     // If you only need one scope you can pass it as a string
-//     scope: scopes
-//   });
+const fs = require('fs');
+const { google } = require('googleapis'); 
+const code = '4/0ARtbsJoy4KoZI2NxEEJpdIJ2rrkXk8gdy9fgEepRopW9aMddEDM9JaFNF5epSY8JlobZBw'; //토큰 요청 url값 
+const credentials = JSON.parse(fs.readFileSync('credentials.json', 'utf-8')); 
+const { client_secret: clientSecret, client_id: clientId, redirect_uris: redirectUris, } = credentials.installed; 
+const oAuth2Client = new google.auth.OAuth2( clientId, clientSecret, redirectUris[0], ); 
+const getToken = async () => { const { tokens } = await oAuth2Client.getToken(code);
+ console.info(tokens); fs.writeFileSync('google-oauth-token.json', JSON.stringify(tokens)); }; getToken();

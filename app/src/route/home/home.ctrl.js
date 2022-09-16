@@ -1,5 +1,8 @@
 const view = {
-    home : (req, res) =>{
+    login : (req, res) =>{
+        res.render("./home/login");
+    },
+    schedule : (req, res) =>{
         res.render("./home/index");
     },
     insert : (req, res) =>{
