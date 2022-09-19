@@ -2,7 +2,6 @@ const fs = require('fs');
 const readline = require('readline');
 const {google} = require('googleapis');
 const googleAuth = require('google-auth-library');
-const url = require('url');
  
 
 
@@ -35,19 +34,16 @@ const oauth2Client = new google.auth.OAuth2(client_id, clientSecret, redirectUrl
 
   
 
-  //Get Token
-  const code = `${code}`; //토큰 요청 url값 
-  const oAuth2Client = new google.auth.OAuth2( client_id, clientSecret, redirectUrl[0], ); 
-  const getToken = async () => { const { tokens } = await oAuth2Client.getToken(code);
-  console.info(tokens); fs.writeFileSync('google-oauth-token.json', JSON.stringify(tokens)); }; getToken();
+  // //Get Token
+  // const code = `${code}`; //토큰 요청 url값 
+  // const oAuth2Client = new google.auth.OAuth2( client_id, clientSecret, redirectUrl[0], ); 
+  // const getToken = async () => { const { tokens } = await oAuth2Client.getToken(code);
+  // console.info(tokens); fs.writeFileSync('google-oauth-token.json', JSON.stringify(tokens)); }; getToken();
   
-  console.log(code);
+  // console.log(code);
     
   console.info(`authUrl :  ${url}`);
   
-
-  
-  let token = await oAuth2Client.getToken()
 
   module.exports = {
     url
