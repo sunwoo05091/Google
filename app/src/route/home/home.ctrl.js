@@ -1,6 +1,18 @@
+const getURL = require("/Google/app/src/public/views/js/getURL");
+const url = require('url');
+
 const view = {
-    login : (req, res) =>{
+    home : (req, res) =>{
         res.render("./home/login");
+    },
+
+    oauth2callbac : (req, res) =>{
+       
+    },
+    login : (req, res) =>{
+        res.redirect(getURL.url);
+        const {code} = url.parse(req.url);
+        console.log(code);
     },
     schedule : (req, res) =>{
         res.render("./home/index");
